@@ -7,13 +7,13 @@ RUN CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' -v
 RUN ls -alth 
 
 FROM ubuntu:20.04 AS rootfs
-ARG VERSION=2.2.3
+ARG VERSION=3.1.10
 WORKDIR /work
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install curl git xz-utils dpkg-dev
 RUN mkdir -p /var/packages/pan-xunlei-com/shares && \
     mkdir -p /var/packages/pan-xunlei-com/target/var && \
-    curl -L https://github.com/Infinity-Server/docker_image_set/raw/blob/xunlei_cgi/v${VERSION}-DSM7.x-$(dpkg-architecture -q DEB_BUILD_ARCH).spk --output /work/xunlei.spk && \
+    curl -L https://github.com/endlingzyb/thunder/blob/main/spk/Dockerfile/v${VERSION}-DSM7.x-$(dpkg-architecture -q DEB_BUILD_ARCH).spk --output /work/xunlei.spk && \
     tar -xvf xunlei.spk && \
     tar -xvf package.tgz && \
     cp -rvf /work/bin/bin/* /var/packages/pan-xunlei-com/target/ && \
