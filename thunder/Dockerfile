@@ -13,7 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install curl git xz-utils dpkg-dev
 RUN mkdir -p /var/packages/pan-xunlei-com/shares && \
     mkdir -p /var/packages/pan-xunlei-com/target/var && \
-    curl -L https://github.com/endlingzyb/thunder/blob/main/spk/Dockerfile/v${VERSION}-DSM7.x-$(dpkg-architecture -q DEB_BUILD_ARCH).spk --output /work/xunlei.spk && \
+    curl -L https://github.com/endlingzyb/thunder/blob/main/spk/v${VERSION}-DSM7.x-$(dpkg-architecture -q DEB_BUILD_ARCH).spk --output /work/xunlei.spk && \
     tar -xvf xunlei.spk && \
     tar -xvf package.tgz && \
     cp -rvf /work/bin/bin/* /var/packages/pan-xunlei-com/target/ && \
